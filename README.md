@@ -1,4 +1,9 @@
 # Fapp
+# TP Angular - Ouseffar Othman
+
+## 👤 Auteur
+**Nom :** Ouseffar  
+**Prénom :** Othman
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
@@ -41,10 +46,13 @@ This will compile your project and store the build artifacts in the `dist/` dire
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-ng test
+ng test![details](https://github.com/user-attachments/assets/ec808172-9315-4bd0-ba3a-2279bc184e1c)
+
 ```
 
-## Running end-to-end tests
+## Running end-to-end tests![product](https://github.com/user-attachments/assets/028dc9ba-5ea3-4dd1-9203-55ec520a0569)![details](https://github.com/user-attachments/assets/ef2daf0f-4854-437d-b568-533e51d7c93e)
+
+
 
 For end-to-end (e2e) testing, run:
 
