@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './CatalogComponent/products.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ProductServiceService} from './product-service.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
