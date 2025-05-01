@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit{
       }
     });
   }
-
+}
 
 
   // const p1 = new Product("P001");
@@ -57,7 +57,7 @@ export class ProductsComponent implements OnInit{
   //   p5.quantity = 18;
   //   p5.image = "assets/images/toushiba.png";
   //   this.products = [p1, p2, p3,p4,p5];
-  }
+
 
   // DeleteProduct(p: any) {
   //   let index= this.products.indexOf(p);
