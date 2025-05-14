@@ -8,5 +8,14 @@ import {RouterOutlet} from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Fapp';
+  actions : Array<any> = [
+    {title:"Home","route":"/home"},
+    {title:"Products","route":"/products"}
+
+  ]
+CurrentAction:any;
+
+  SetCurrentAction(action: any) {
+    this.CurrentAction=action;
+  }
 }

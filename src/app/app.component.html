@@ -1,14 +1,13 @@
 
 <div class="p-3">
   <ul class="nav nav-pills">
-    <li>
-      <button routerLink="/home" class="btn btn-outline-dark ms-2">Home</button>
+    <li *ngFor=" let action of actions ">
+      <button (click)="SetCurrentAction(action)" routerLink="{{action.route}}"
+              [class]="action==CurrentAction?'btn btn-dark ms-2':'btn btn-outline-dark ms-2'"
+              >{{action.title}}</button>
 
     </li>
-    <li>
-      <button routerLink="/products" class="btn btn-dark ms-2">Products</button>
 
-    </li>
 
   </ul>
 
