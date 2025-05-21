@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductServiceService} from './product-service.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import {ProductServiceService} from './product-service.service';
     FormsModule,
     ReactiveFormsModule,
     ProductDetailsComponent,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    LoginComponent
   ],
   providers: [ProductServiceService],
   bootstrap: [AppComponent]
