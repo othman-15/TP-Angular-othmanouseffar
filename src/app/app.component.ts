@@ -10,7 +10,9 @@ import {RouterOutlet} from '@angular/router';
 export class AppComponent {
   actions : Array<any> = [
     {title:"Home","route":"/home"},
-    {title:"Products","route":"/products"}
+    {title:"Products","route":"/products"},
+
+
 
   ]
 CurrentAction:any;
