@@ -45,13 +45,31 @@
           <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
         </button>
       </form>
-      <button class="btn btn-outline-dark ms-2" [routerLink]="['/login']">
-        <i class="bi-person-fill me-1"></i>
+      <div class="dropdown ms-2" [ngClass]="{ 'show': showAccountMenu }">
+        <button class="btn btn-outline-dark " type="button" id="accountMenuBtn"
+                (click)="toggleAccountMenu()"
+                aria-expanded="false">
+          <i class="bi-person-fill me-1"></i>
+          Account
+        </button>
 
-      </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow" [class.show]="showAccountMenu" aria-labelledby="accountMenuBtn">
+          <li>
+            <a class="dropdown-item text-center text-primary fw-bold" [routerLink]="['/login']">
+              Sign in or create account
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Purchase History</a></li>
+          <li><a class="dropdown-item" href="#">Walmart+</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 <router-outlet>
 
 </router-outlet>
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>

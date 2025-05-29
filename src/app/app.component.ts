@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 
 @Component({
@@ -16,6 +16,18 @@ export class AppComponent {
 
   ]
 CurrentAction:any;
+  showAccountMenu = false;
+
+  toggleAccountMenu(): void {
+    this.showAccountMenu = !this.showAccountMenu;
+  }
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.showAccountMenu = false;
+    }
+  }
 
   SetCurrentAction(action: any) {
     this.CurrentAction=action;

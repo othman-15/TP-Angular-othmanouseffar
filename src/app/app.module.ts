@@ -10,12 +10,14 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import {HttpClientModule} from '@angular/common/http';
 import {ProductServiceService} from './product-service.service';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsComponent
+    ProductsComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

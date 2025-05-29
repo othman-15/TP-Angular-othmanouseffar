@@ -1,20 +1,59 @@
-<div class="container mt-30 py-5">
-  <div class="card mx-auto" style="max-width: 1800px;">
-    <div class="row g-0">
-      <div class="col-md-3 d-flex align-items-center justify-content-center p-3">
-        <img [src]="product?.image"
-             class="img-fluid rounded border"
-             style="max-height: 600px; object-fit: cover;"
-             alt="{{product?.productTitle}}">
-      </div>
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
       <div class="col-md-6">
-        <div class="card-body">
-          <h3 class="card-title">{{ product?.productTitle }}</h3>
-          <p class="card-text"><strong>Prix :</strong> {{ product?.productPrice }}</p>
+        <img class="card-img-top mb-5 mb-md-0" [src]="product?.image"
+             style="max-height: 450px; object-fit: contain;"
+             alt="{{product?.productTitle}}" /></div>
+      <div class="col-md-6">
+        <h1 class="display-5 fw-bolder">{{ product?.productTitle }}</h1>
+        <div class="fs-5 mb-5">
+          <span class="text-decoration-line-through">{{ product?.productPrice }} </span>
+          <span >{{ product?.productPrice }}</span>
           <p class="card-text"><strong>Quantité disponible :</strong> {{ product?.quantity }}</p>
-          <a routerLink="/products" class="btn btn-outline-dark mt-3">← Retour aux produits</a>
+        </div>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+        <div class="d-flex">
+          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+          <button class="btn btn-outline-dark flex-shrink-0" type="button">
+            <i class="bi-cart-fill me-1"></i>
+            Add to cart
+          </button>
+          <a routerLink="/products" class="btn btn-outline-dark flex-shrink-0 ms-2">← Retour aux produits</a>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<section class="py-5 bg-light">
+  <div class="container px-4 px-lg-5 mt-5">
+    <h2 class="fw-bolder mb-4">Related products</h2>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+
+      <div class="col mb-5" *ngFor="let product of products">
+        <div class="card h-100">
+
+          <img [src]="product.image" [alt]="product.productTitle"/>
+
+          <div class="card-body p-4">
+            <div class="text-center">
+
+              <h5 class="fw-bolder">{{ product.productTitle }}</h5>
+
+
+
+              {{ product.productPrice }}
+            </div>
+          </div>
+
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

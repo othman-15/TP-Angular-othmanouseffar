@@ -1,0 +1,47 @@
+<div class="container  d-flex justify-content-center align-items-center min-vh-100 ">
+  <div  class="card shadow-sm p-4  rounded-4">
+    <div class="text-center mb-4">
+      <h2 class="text-primary fw-bold">Create Your Account</h2>
+      <p class="text-muted">Welcome to Our Shop!</p>
+    </div>
+
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address or phone number</label>
+        <input type="email" class="form-control" id="email" placeholder="example@mail.com" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Your name</label>
+        <input type="text" class="form-control" id="name" placeholder="First and Last name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" minlength="6" required>
+        <small class="form-text text-muted">Must be at least 6 characters.</small>
+      </div>
+
+      <div class="mb-4">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+
+      <div class="text-center mt-3">
+        <small>Already have an account? <a href="#" class="text-decoration-none text-primary">Sign in</a></small>
+      </div>
+
+      <hr>
+
+      <p class="text-center mb-0">
+        <small class="text-muted">
+          By signing up, you agree to our
+          <a href="#" class="text-decoration-none">Terms of Service</a> and
+          <a href="#" class="text-decoration-none">Privacy Policy</a>.
+        </small>
+      </p>
+    </form>
+  </div>
+</div>
