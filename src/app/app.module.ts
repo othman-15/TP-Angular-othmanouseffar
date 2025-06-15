@@ -11,13 +11,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProductServiceService} from './product-service.service';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductsComponent,
-    SignupComponent
+    SignupComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
