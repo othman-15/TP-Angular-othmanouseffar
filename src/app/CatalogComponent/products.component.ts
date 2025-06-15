@@ -26,6 +26,16 @@ export class ProductsComponent implements OnInit{
       }
     });
   }
+  toggleFavorite(product: any) {
+    product.favorite = !product.favorite;
+    // Tu peux ensuite enregistrer ça localement ou via API
+  }
+
+  addToCart(product: any) {
+    console.log("Ajouté au panier :", product);
+    // À remplacer par l'ajout réel au panier
+  }
+
 }
 
 

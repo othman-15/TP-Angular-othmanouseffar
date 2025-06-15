@@ -5,6 +5,7 @@ export class Product {
   private _productPrice!: string;
   private _quantity!: number;
   private _image!: string;
+  public favorite: boolean = false
 
   constructor(productID: string) {
     this._productID = productID;

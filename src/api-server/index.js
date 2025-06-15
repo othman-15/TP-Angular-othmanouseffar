@@ -16,7 +16,8 @@ app.get("/api/products", (req, res) => {
       image: "assets/images/Hp-pavilon.png",
       category: "laptop",
       productPrice: "9500 DH",
-      quantity: 5
+      quantity: 5,
+      favorite: false
     },
     {
       productID: "P002",
@@ -24,7 +25,8 @@ app.get("/api/products", (req, res) => {
       image: "assets/images/m2-macbook-air.png",
       category: "laptop",
       productPrice: "14000 DH",
-      quantity: 2
+      quantity: 2,
+      favorite: false
     },
     {
       productID: "P003",
@@ -32,7 +34,8 @@ app.get("/api/products", (req, res) => {
       image: "assets/images/mouse-hp.png",
       category: "accessory",
       productPrice: "360 DH",
-      quantity: 30
+      quantity: 30,
+      favorite: false
     },
     {
       productID: "P08703",
@@ -40,7 +43,8 @@ app.get("/api/products", (req, res) => {
       image: "assets/images/imprim-hp.png",
       category: "printer",
       productPrice: "1200 DH",
-      quantity: 15
+      quantity: 15,
+      favorite: false
     },
     {
       productID: "P087e03",
@@ -48,7 +52,44 @@ app.get("/api/products", (req, res) => {
       image: "assets/images/toushiba.png",
       category: "laptop",
       productPrice: "9999 DH",
-      quantity: 18
+      quantity: 18,
+      favorite: false
+    },
+    {
+      productID: "P001",
+      productTitle: "HP Pavilion 15",
+      image: "assets/images/Hp-pavilon.png",
+      category: "laptop",
+      productPrice: "9500 DH",
+      quantity: 5,
+      favorite: false
+    },
+    {
+      productID: "P002",
+      productTitle: "MacBook Air M2",
+      image: "assets/images/m2-macbook-air.png",
+      category: "laptop",
+      productPrice: "14000 DH",
+      quantity: 2,
+      favorite: false
+    },
+    {
+      productID: "P003",
+      productTitle: "hp mouse",
+      image: "assets/images/mouse-hp.png",
+      category: "accessory",
+      productPrice: "360 DH",
+      quantity: 30,
+      favorite: false
+    },
+    {
+      productID: "P08703",
+      productTitle: "imprimante HP",
+      image: "assets/images/imprim-hp.png",
+      category: "printer",
+      productPrice: "1200 DH",
+      quantity: 15,
+      favorite: false
     }
   ];
   res.send(products);

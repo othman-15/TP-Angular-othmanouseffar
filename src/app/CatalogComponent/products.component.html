@@ -18,35 +18,51 @@
 </header>
 
 <section class="py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-      <div class="col mb-5" *ngFor="let product of products">
-        <div class="card h-100">
+  <div class="container">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 g-4 justify-content-center">
+      <div class="col" *ngFor="let product of products">
+        <div class="card h-100 shadow-sm position-relative p-2">
 
-          <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+          <!-- ❤️ Icône Favori (clicable) -->
+          <button class="btn btn-light position-absolute"
+                  (click)="toggleFavorite(product)"
+                  [ngClass]="{ 'text-dark': product.favorite }"
+                  style="top: 0.5rem; right: 0.5rem; z-index: 1; border-radius: 50%;">
+            <i class="bi" [ngClass]="product.favorite ? 'bi-heart-fill' : 'bi-heart'"></i>
+          </button>
 
+          <!-- Image produit -->
+          <img [src]="product.image"
+               [alt]="product.productTitle"
+               class="card-img-top"
+               style="height: 200px; object-fit: cover; border-radius: 8px;" />
 
-          <img class="card-img-top" [src]="product.image" [alt]="product.productTitle" />
+          <!-- Détails -->
+          <div class="card-body text-center">
+            <h6 class="fw-bold mb-2">{{ product.productTitle }}</h6>
 
+            <!-- Stock -->
+            <div *ngIf="product.quantity < 5" class="badge bg-danger mb-2">Stock faible</div>
 
-          <div class="card-body p-4">
-            <div class="text-center">
-              <h5 class="fw-bolder">{{ product.productTitle }}</h5>
-              <div *ngIf="product.quantity <10 " style="color: red">{{ product.quantity }}</div>
-              <div *ngIf="product.quantity >10 " >{{ product.quantity }}</div>
-              {{ product.productPrice }}
+            <!-- Nombre de stock si >= 5 -->
+            <div *ngIf="product.quantity >= 5" class="mb-1" style="color: black">
+              {{ product.quantity }} en stock
             </div>
+
+            <!-- Prix -->
+            <div class="text-muted mb-2">{{ product.productPrice }} DH MAD</div>
           </div>
 
-
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-              <a class="btn btn-outline-dark mt-auto" [routerLink]="['/product', product.productID]">Details</a>
-            </div>
+          <!-- Actions -->
+          <div class="card-footer bg-transparent border-0 text-center">
+            <a class="btn btn-sm btn-outline-dark me-2" [routerLink]="['/product', product.productID]">Détails</a>
+            <button class="btn  btn-sm btn-outline-dark ms-2" (click)="addToCart(product)">ADD</button>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
