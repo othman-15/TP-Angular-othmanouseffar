@@ -1,5 +1,7 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import {CartService} from './cart.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,7 @@ import {RouterOutlet} from '@angular/router';
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   actions : Array<any> = [
     {title:"Home","route":"/home"},
     {title:"Products","route":"/products"},
@@ -17,6 +19,18 @@ export class AppComponent {
   ]
 CurrentAction:any;
   showAccountMenu = false;
+
+
+  cartCount = 0;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartService.cartCount$.subscribe(count => {
+      this.cartCount = count;
+    });
+  }
+
 
   toggleAccountMenu(): void {
     this.showAccountMenu = !this.showAccountMenu;

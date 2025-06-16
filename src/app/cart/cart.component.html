@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row">
+
+    <div class="col-md-8">
+      <h4 class="mb-4 fw-bold">Cart</h4>
+
+      <div *ngIf="cartItems.length === 0">
+        <p>Votre panier est vide.</p>
+      </div>
+
+      <div *ngIf="cartItems.length > 0" class="bg-white p-4 rounded shadow-sm">
+        <div *ngFor="let item of cartItems" class="d-flex justify-content-between align-items-center border-bottom py-3">
+          <div class="d-flex align-items-center">
+            <img [src]="item.image" alt="Image" width="70" height="70" class="me-3 rounded">
+            <div>
+              <div class="fw-bold">{{ item.productTitle }}</div>
+              <div class="text-muted">{{ parseFloat(item.productPrice) }} DH</div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <input type="number" [(ngModel)]="item.quantity" (change)="updateTotal()" class="form-control form-control-sm me-3 w-25 text-center" min="1">
+            <div class="me-3 fw-semibold">{{ parseFloat(item.productPrice) * item.quantity }} DH</div>
+            <button class="btn btn-sm btn-outline-danger" (click)="remove(item.productID)">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="bg-light p-4 rounded shadow-sm">
+        <h5 class="fw-bold mb-3">Sommaire</h5>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Articles</span>
+          <span>{{ totalArticles }} – {{ totalPrice }} DH</span>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Expédition</label>
+          <select class="form-select form-select-sm" [(ngModel)]="shipping">
+            <option value="5">Livraison Standard - 5.00 DH</option>
+            <option value="10">Express - 10.00 DH</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Donner le code</label>
+          <input type="text" class="form-control form-control-sm" placeholder="entrez votre code">
+        </div>
+        <div class="d-flex justify-content-between fw-bold mt-3 border-top pt-3">
+          <span>Prix total</span>
+          <span>{{ totalPrice + shipping }} DH</span>
+        </div>
+        <button class="btn btn-dark w-100 mt-3">Commander</button>
+      </div>
+    </div>
+  </div>
+</div>

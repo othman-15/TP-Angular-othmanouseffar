@@ -6,7 +6,7 @@ import {Product} from '../models/Product';
 
 @Injectable()
 export class ProductServiceService {
-  private host:string="http://localhost:3000";
+  private host:string="http://localhost:3001";
 
   constructor(private http:HttpClient) { }
   getAllProduct() : Observable<any>{

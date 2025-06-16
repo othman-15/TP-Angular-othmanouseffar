@@ -102,5 +102,5 @@ app.post("/api/cart", (req, res) => {
 
 app.get("/api/cart", (req, res) => res.send(cart));
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

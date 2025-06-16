@@ -3,6 +3,7 @@ import {NgForOf} from '@angular/common';
 import {Product} from '../../models/Product';
 import {ProductServiceService} from '../product-service.service';
 import {Router} from '@angular/router';
+import {CartService} from '../cart.service';
 
 @Component({
 
@@ -14,7 +15,7 @@ standalone:false,
 export class ProductsComponent implements OnInit{
 
   public keyword:string ="";
-  constructor(public prodService:ProductServiceService,private router:Router) {
+  constructor(public prodService:ProductServiceService,private router:Router,private cartService: CartService) {
   }
   products: Product[] = [];
 
@@ -31,11 +32,10 @@ export class ProductsComponent implements OnInit{
     // Tu peux ensuite enregistrer ça localement ou via API
   }
 
-  addToCart(product: any) {
-    console.log("Ajouté au panier :", product);
-    // À remplacer par l'ajout réel au panier
-  }
 
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 }
 
 
