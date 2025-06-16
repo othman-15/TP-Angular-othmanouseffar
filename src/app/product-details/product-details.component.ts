@@ -3,14 +3,17 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { Product } from '../../models/Product';
 import { ProductServiceService } from '../product-service.service';
 import {NgForOf} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CartService} from '../cart.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
   imports: [
-    RouterLink,
-    NgForOf
+
+    NgForOf,
+    ReactiveFormsModule
   ]
 })
 export class ProductDetailsComponent implements OnInit {
@@ -19,8 +22,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public prodService: ProductServiceService,
-    private router: Router
+    private router: Router,
+  private cartService: CartService
   ) {}
+
   products: Product[] = [];
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,5 +39,8 @@ export class ProductDetailsComponent implements OnInit {
         console.error("Erreur lors de la récupération des produits :", err);
       }
     });
+  }
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 }
