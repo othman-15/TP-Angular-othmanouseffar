@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
   <div class="container px-4 px-lg-5">
-    <a class="navbar-brand fw-bold text-dark" href="#!">🛍️ Start Shopping</a>
+    <a class="navbar-brand fw-bold text-dark" href="#!"> Start Shopping</a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarContent">
-      <!-- Left menu -->
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
         <li class="nav-item" *ngFor="let action of actions">
           <a class="nav-link fw-semibold" [routerLink]="action.route"
@@ -30,16 +30,16 @@
         </li>
       </ul>
 
-      <!-- Right menu -->
+
       <div class="d-flex align-items-center">
-        <!-- Cart Button -->
+
         <a class="btn btn-outline-dark me-2" [routerLink]="['/cart']">
           <i class="bi-cart-fill me-1"></i>
           Cart
           <span class="badge bg-dark text-white ms-1 rounded-pill">{{ cartCount }}</span>
         </a>
 
-        <!-- Account Dropdown -->
+
         <div class="dropdown" [ngClass]="{ 'show': showAccountMenu }">
           <button class="btn btn-outline-dark" type="button"
                   id="accountMenuBtn" (click)="toggleAccountMenu()"

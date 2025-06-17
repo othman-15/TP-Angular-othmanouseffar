@@ -15,7 +15,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "HP Pavilion 15",
       image: "assets/images/Hp-pavilon.png",
       category: "laptop",
-      productPrice: "9500 DH",
+      productPrice: "9500 ",
       quantity: 5,
       favorite: false
     },
@@ -24,7 +24,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "MacBook Air M2",
       image: "assets/images/m2-macbook-air.png",
       category: "laptop",
-      productPrice: "14000 DH",
+      productPrice: "14000 ",
       quantity: 2,
       favorite: false
     },
@@ -33,7 +33,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "hp mouse",
       image: "assets/images/mouse-hp.png",
       category: "accessory",
-      productPrice: "360 DH",
+      productPrice: "360 ",
       quantity: 30,
       favorite: false
     },
@@ -42,7 +42,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "imprimante HP",
       image: "assets/images/imprim-hp.png",
       category: "printer",
-      productPrice: "1200 DH",
+      productPrice: "1200 ",
       quantity: 15,
       favorite: false
     },
@@ -51,7 +51,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "Toshiba",
       image: "assets/images/toushiba.png",
       category: "laptop",
-      productPrice: "9999 DH",
+      productPrice: "9999 ",
       quantity: 18,
       favorite: false
     },
@@ -60,7 +60,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "HP Pavilion 15",
       image: "assets/images/Hp-pavilon.png",
       category: "laptop",
-      productPrice: "9500 DH",
+      productPrice: "9500 ",
       quantity: 5,
       favorite: false
     },
@@ -69,7 +69,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "MacBook Air M2",
       image: "assets/images/m2-macbook-air.png",
       category: "laptop",
-      productPrice: "14000 DH",
+      productPrice: "14000 ",
       quantity: 2,
       favorite: false
     },
@@ -78,7 +78,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "hp mouse",
       image: "assets/images/mouse-hp.png",
       category: "accessory",
-      productPrice: "360 DH",
+      productPrice: "360 ",
       quantity: 30,
       favorite: false
     },
@@ -87,7 +87,7 @@ app.get("/api/products", (req, res) => {
       productTitle: "imprimante HP",
       image: "assets/images/imprim-hp.png",
       category: "printer",
-      productPrice: "1200 DH",
+      productPrice: "1200 ",
       quantity: 15,
       favorite: false
     }
