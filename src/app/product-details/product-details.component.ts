@@ -28,18 +28,28 @@ export class ProductDetailsComponent implements OnInit {
 
   products: Product[] = [];
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.prodService.getAllProduct().subscribe({
       next: (data) => {
         this.products=data.slice(0, 4)
-        this.product = data.find((p: { productID: string | null; }) => p.productID === id);
+        this.product = data.find((p: { productID: number | null; }) => p.productID === id);
       },
       error: (err) => {
         console.error("Erreur lors de la récupération des produits :", err);
       }
     });
+
+    this.prodService.getProductbyid(id).subscribe({
+      next: (data) => {
+        this.product = data;
+      },
+      error: (err) => {
+        console.error("Erreur lors de la récupération du produit :", err);
+      }
+    });
   }
+
+
   addToCart(product: Product) {
     this.cartService.addToCart(product);
   }

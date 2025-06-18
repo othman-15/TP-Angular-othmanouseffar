@@ -10,6 +10,9 @@ import {CartService} from './cart.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+    title(title: any) {
+        throw new Error('Method not implemented.');
+    }
   actions : Array<any> = [
     {title:"Home","route":"/home"},
     {title:"Products","route":"/products"},

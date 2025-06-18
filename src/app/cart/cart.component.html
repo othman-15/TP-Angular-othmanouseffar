@@ -18,7 +18,7 @@
             <img [src]="item.image" alt="Image" width="70" height="70" class="me-3 rounded border">
             <div>
               <div class="fw-semibold">{{ item.productTitle }}</div>
-              <div class="text-muted small">{{ parseFloat(item.productPrice) }} DH</div>
+              <div class="text-muted small">{{ item.productPrice }} DH</div>
             </div>
           </div>
 
@@ -29,7 +29,7 @@
                    class="form-control form-control-sm text-center me-3"
                    style="width: 60px;"
                    min="1">
-            <div class="fw-semibold me-3">{{ parseFloat(item.productPrice) * item.quantity }} DH</div>
+            <div class="fw-semibold me-3">{{ item.productPrice * item.quantity }} DH</div>
             <button class="btn btn-sm btn-outline-danger" (click)="remove(item.productID)" title="Supprimer">
               <i class="bi bi-trash-fill"></i>
             </button>

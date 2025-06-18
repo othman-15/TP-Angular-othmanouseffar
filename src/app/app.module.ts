@@ -7,20 +7,18 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './CatalogComponent/products.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProductServiceService} from './product-service.service';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { PanierComponent } from './panier/panier.component';
 import { CartComponent } from './cart/cart.component';
+import {TokenInterceptor} from './token.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductsComponent,
-    SignupComponent,
-    PanierComponent,
     CartComponent
   ],
   imports: [
@@ -31,9 +29,12 @@ import { CartComponent } from './cart/cart.component';
     ProductDetailsComponent,
     HttpClientModule,
     FormsModule,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+
   ],
-  providers: [ProductServiceService],
+  providers: [ProductServiceService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

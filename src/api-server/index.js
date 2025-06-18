@@ -17,7 +17,8 @@ app.get("/api/products", (req, res) => {
       category: "laptop",
       productPrice: "9500 ",
       quantity: 5,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P002",
@@ -26,7 +27,8 @@ app.get("/api/products", (req, res) => {
       category: "laptop",
       productPrice: "14000 ",
       quantity: 2,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P003",
@@ -35,7 +37,8 @@ app.get("/api/products", (req, res) => {
       category: "accessory",
       productPrice: "360 ",
       quantity: 30,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P08703",
@@ -44,7 +47,8 @@ app.get("/api/products", (req, res) => {
       category: "printer",
       productPrice: "1200 ",
       quantity: 15,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P087e03",
@@ -53,7 +57,8 @@ app.get("/api/products", (req, res) => {
       category: "laptop",
       productPrice: "9999 ",
       quantity: 18,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P001",
@@ -62,7 +67,8 @@ app.get("/api/products", (req, res) => {
       category: "laptop",
       productPrice: "9500 ",
       quantity: 5,
-      favorite: false
+      favorite: false,  colors: ['white', 'red', 'gray', 'black']
+
     },
     {
       productID: "P002",
@@ -71,7 +77,8 @@ app.get("/api/products", (req, res) => {
       category: "laptop",
       productPrice: "14000 ",
       quantity: 2,
-      favorite: false
+      favorite: false,
+      colors: ['white', 'red', 'gray', 'black']
     },
     {
       productID: "P003",
@@ -80,7 +87,8 @@ app.get("/api/products", (req, res) => {
       category: "accessory",
       productPrice: "360 ",
       quantity: 30,
-      favorite: false
+      favorite: false,  colors: ['white', 'red', 'gray', 'black']
+
     },
     {
       productID: "P08703",
@@ -89,7 +97,7 @@ app.get("/api/products", (req, res) => {
       category: "printer",
       productPrice: "1200 ",
       quantity: 15,
-      favorite: false
+      favorite: false,  colors: ['white', 'red', 'gray', 'black']
     }
   ];
   res.send(products);

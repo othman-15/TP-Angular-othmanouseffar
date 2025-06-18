@@ -7,9 +7,9 @@ import { Product } from '../models/Product';
 })
 export class CartService {
   private cartItems: Product[] = [];
-  private cartItemCount = new BehaviorSubject<number>(0); // ✅
+  private cartItemCount = new BehaviorSubject<number>(0);
 
-  cartCount$ = this.cartItemCount.asObservable(); // ✅ observable accessible
+  cartCount$ = this.cartItemCount.asObservable();
 
   getItems() {
     return this.cartItems;
@@ -30,22 +30,22 @@ export class CartService {
       this.cartItems.push(newProduct);
     }
 
-    this.updateCartCount(); // ✅ mettre à jour
+    this.updateCartCount();
   }
 
   removeFromCart(productID: string) {
     this.cartItems = this.cartItems.filter(p => p.productID !== productID);
-    this.updateCartCount(); // ✅
+    this.updateCartCount();
   }
 
   clearCart() {
     this.cartItems = [];
-    this.updateCartCount(); // ✅
+    this.updateCartCount();
   }
 
   getTotalPrice(): number {
     return this.cartItems.reduce((total, item) =>
-      total + parseFloat(item.productPrice) * item.quantity, 0);
+      total + item.productPrice * item.quantity, 0);
   }
 
   private updateCartCount() {

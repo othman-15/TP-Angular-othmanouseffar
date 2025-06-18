@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
   updateTotal() {
     this.totalArticles = this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
     this.totalPrice = this.cartItems.reduce(
-      (acc, item) => acc + parseFloat(item.productPrice) * item.quantity,
+      (acc, item) => acc + item.productPrice * item.quantity,
       0
     );
   }

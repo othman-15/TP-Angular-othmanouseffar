@@ -31,21 +31,25 @@
       </ul>
 
 
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center gap-2">
 
-        <a class="btn btn-outline-dark me-2" [routerLink]="['/cart']">
-          <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill">{{ cartCount }}</span>
+
+        <a [routerLink]="['/favorites']"
+           class="nav-button d-flex align-items-center bg-white text-dark rounded-pill px-3 py-1 shadow-sm text-decoration-none"
+           style="font-size: 0.9rem;">
+          <i class="bi bi-heart me-2"></i>
+          <div class="fw-semibold">My Items</div>
         </a>
 
 
         <div class="dropdown" [ngClass]="{ 'show': showAccountMenu }">
-          <button class="btn btn-outline-dark" type="button"
-                  id="accountMenuBtn" (click)="toggleAccountMenu()"
-                  aria-expanded="false">
-            <i class="bi-person-fill me-1"></i>
-            Account
+          <button class="nav-button d-flex align-items-center bg-white text-dark rounded-pill px-3 py-1 border-0 shadow-sm"
+                  type="button"
+                  id="accountMenuBtn"
+                  (click)="toggleAccountMenu()"
+                  style="font-size: 0.9rem;">
+            <i class="bi bi-person-fill me-2"></i>
+            <div class="fw-semibold">Account</div>
           </button>
           <ul class="dropdown-menu dropdown-menu-end shadow" [class.show]="showAccountMenu"
               aria-labelledby="accountMenuBtn">
@@ -59,7 +63,21 @@
             <li><a class="dropdown-item" href="#">Walmart+</a></li>
           </ul>
         </div>
+
+
+        <a [routerLink]="['/cart']"
+           class="nav-button d-flex align-items-center bg-white text-dark rounded-pill px-3 py-1 shadow-sm text-decoration-none position-relative"
+           style="font-size: 0.9rem;">
+          <i class="bi bi-cart-fill me-2"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-warning text-dark"
+                style="font-size: 0.7rem;">
+      {{ cartCount }}
+    </span>
+
+        </a>
       </div>
+
+
     </div>
   </div>
 </nav>

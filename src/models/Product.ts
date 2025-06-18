@@ -1,22 +1,22 @@
 export class Product {
-  // Déclaration explicite de l'attribut
   private readonly _productID: string;
   private _productTitle!: string;
-  private _productPrice!: string;
+  private _productPrice!: number; // changée en number
   private _quantity!: number;
   private _image!: string;
-  public favorite: boolean = false
+  private _category!: string;
+  private _colors!: string[];
+  public favorite: boolean = false;
 
   constructor(productID: string) {
     this._productID = productID;
   }
 
-  // Getter pour productID
+  // Getters & Setters
   public get productID(): string {
     return this._productID;
   }
 
-  // Getters & Setters
   public get productTitle(): string {
     return this._productTitle;
   }
@@ -24,10 +24,10 @@ export class Product {
     this._productTitle = value;
   }
 
-  public get productPrice(): string {
+  public get productPrice(): number {
     return this._productPrice;
   }
-  public set productPrice(value: string) {
+  public set productPrice(value: number) {
     this._productPrice = value;
   }
 
@@ -45,7 +45,21 @@ export class Product {
     this._image = value;
   }
 
+  public get category(): string {
+    return this._category;
+  }
+  public set category(value: string) {
+    this._category = value;
+  }
+
+  public get colors(): string[] {
+    return this._colors;
+  }
+  public set colors(value: string[]) {
+    this._colors = value;
+  }
+
   public printProduct(): string {
-    return `productID: ${this.productID}, productTitle: ${this.productTitle}, productPrice: ${this.productPrice}, quantity: ${this.quantity}, image: ${this.image}`;
+    return `productID: ${this.productID}, productTitle: ${this.productTitle}, productPrice: ${this.productPrice}, quantity: ${this.quantity}, category: ${this.category}, image: ${this.image}, colors: ${this.colors.join(", ")}`;
   }
 }
