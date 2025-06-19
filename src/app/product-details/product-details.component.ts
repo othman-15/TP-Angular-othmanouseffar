@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { Product } from '../../models/Product';
 import { ProductServiceService } from '../product-service.service';
-import {NgForOf} from '@angular/common';
+import {NgForOf,  NgIf, NgStyle} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CartService} from '../cart.service';
 
@@ -11,9 +11,10 @@ import {CartService} from '../cart.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
   imports: [
-
+    NgIf,
     NgForOf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgStyle
   ]
 })
 export class ProductDetailsComponent implements OnInit {
@@ -49,8 +50,19 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  selectColor(color: string): void {
+    if (this.product) {
+      this.product.selectedColor = color;
+    }
+  }
 
   addToCart(product: Product) {
+    if (product.colors?.length && !product.selectedColor) {
+      alert('Please select a color before adding to cart.');
+      return;
+    }
+
     this.cartService.addToCart(product);
   }
+
 }

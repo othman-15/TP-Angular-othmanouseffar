@@ -1,92 +1,65 @@
-import { Product } from "./Product";
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { Product } from "./Product";
 
-class ShoppingCart {
-    itemsProduct: Array<ShoppingCartItem>;
-    total: number;
+export class ShoppingCart {
+  private _items: ShoppingCartItem[] = [];
 
-    constructor(){
-        this.itemsProduct = new Array()
-        this.total = 0
+  public addProduct(product: Product, quantity: number = 1): void {
+    const existingItem = this.findItem(product);
+
+    if (existingItem) {
+      existingItem.addQuantity(quantity);
+    } else {
+      const newItem = new ShoppingCartItem(new Product(product.productID), quantity);
+      // Copier les propriétés
+      Object.assign(newItem.product, product);
+      this._items.push(newItem);
     }
+  }
 
-    public addItem(shoppingCartItem: ShoppingCartItem){
-        let elem : ShoppingCartItem | undefined = this.itemsProduct.find(x => x.itemProduct.productID == shoppingCartItem.itemProduct.productID)
+  public removeProduct(product: Product): void {
+    const index = this._items.findIndex(item =>
+      item.product.productID === product.productID &&
+      item.product.selectedColor === product.selectedColor
+    );
 
-        
-        if(elem == undefined){
-        
-            this.itemsProduct.push(shoppingCartItem)
-        } else {
-            //let currentShoppingCartItem = this.itemsProduct[index]
-            elem.addProduct(shoppingCartItem)
-        }
+    if (index !== -1) {
+      this._items.splice(index, 1);
     }
+  }
 
-    public removeItem(shoppingCartItem: ShoppingCartItem){
-        let elem : ShoppingCartItem | undefined = this.itemsProduct.find(x => x.itemProduct.productID == shoppingCartItem.itemProduct.productID)
-        if(elem != undefined){
-        
-            elem.subtractProduct(shoppingCartItem)
-            if(elem.quantity == 0){
-                this.itemsProduct.splice(this.itemsProduct.indexOf(shoppingCartItem), 1)
-            }
-        }
+  public updateQuantity(product: Product, newQuantity: number): void {
+    const item = this.findItem(product);
+    if (item) {
+      item.quantity = newQuantity;
     }
+  }
 
-     
+  private findItem(product: Product): ShoppingCartItem | undefined {
+    return this._items.find(item =>
+      item.product.productID === product.productID &&
+      item.product.selectedColor === product.selectedColor
+    );
+  }
 
-    public getItems(){
-        for(var index in this.itemsProduct){ 
-            console.log("\n\n"  + this.itemsProduct[index].displayProduct() +"\n"); 
-        }
-    }
+  public get items(): ShoppingCartItem[] {
+    return [...this._items];
+  }
+
+  public get totalItems(): number {
+    return this._items.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  public get totalPrice(): number {
+    return this._items.reduce((sum, item) => sum + item.totalPrice, 0);
+  }
+
+  public clear(): void {
+    this._items = [];
+  }
+
+  public displayCart(): string {
+    return this._items.map(item => item.displayDetails()).join('\n') +
+      `\nTotal: ${this.totalPrice}DH (${this.totalItems} articles)`;
+  }
 }
-
-
-let productOne = new Product("REFAZER")
-productOne.productTitle = "Tablette SAM 12 Pouce"
-productOne.prouctPrice = "2334 DH"
-
-let productTwo = new Product("ARRR")
-productTwo.productTitle = "IPHONE 14 PRO"
-productTwo.prouctPrice = "13000 DH"
-
-let productThree= new Product("OOPPP")
-productThree.productTitle = "SMART TV 42 P"
-productThree.prouctPrice = "4000 DH"
-
-let productFour= new Product("REFAZER")
-productFour.productTitle = "Tablette SAM 12 Pouce"
-productFour.prouctPrice = "2334 DH"
-
-let productFive = new Product("ARRR")
-productFive.productTitle = "IPHONE 14 PRO"
-productFive.prouctPrice = "13000 DH"
-
-let shoppingCartItemOne = new ShoppingCartItem(productOne)
-let shoppingCartItemTwo = new ShoppingCartItem(productTwo)
-let shoppingCartItemThree = new ShoppingCartItem(productThree)
-let shoppingCartItemFour = new ShoppingCartItem(productFour)
-let shoppingCartItemFive = new ShoppingCartItem(productFive)
-
-
-let shoppingCart = new ShoppingCart()
-
-
-shoppingCart.addItem(shoppingCartItemOne)
-shoppingCart.addItem(shoppingCartItemTwo)
-shoppingCart.addItem(shoppingCartItemThree)
-shoppingCart.addItem(shoppingCartItemFour)
-shoppingCart.addItem(shoppingCartItemFive)
-
-
-console.log(shoppingCart.getItems())
-
-shoppingCart.removeItem(shoppingCartItemFive)
-shoppingCart.removeItem(shoppingCartItemThree)
-shoppingCart.removeItem(shoppingCartItemFive)
-
-console.log(".....After supression......")
-
-console.log(shoppingCart.getItems())

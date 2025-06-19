@@ -39,7 +39,18 @@
                  style="object-fit: cover;" />
           </div>
 
+                <div *ngIf="product.colors?.length" class="d-flex justify-content-center gap-2 mt-2">
+                  <span
+                    *ngFor="let color of product.colors"
+                    (click)="selectColor(product, color)"
+                    class="rounded-circle border"
+                    [ngClass]="{ 'selected-color': product.selectedColor === color }"
+                    [ngStyle]="{ 'background-color': color }"
+                    style="width: 18px; height: 18px; display: inline-block; cursor: pointer;"
+                    title="{{ color }}">
+</span>
 
+                </div>
           <div class="card-body text-center">
             <h6 class="fw-bold mb-2">{{ product.productTitle }}</h6>
 

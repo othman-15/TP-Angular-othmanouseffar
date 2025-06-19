@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
         throw new Error('Method not implemented.');
     }
   actions : Array<any> = [
-    {title:"Home","route":"/home"},
-    {title:"Products","route":"/products"},
+
+    {title:"Home","route":"/products"},
 
 
 

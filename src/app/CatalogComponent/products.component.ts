@@ -34,7 +34,15 @@ export class ProductsComponent implements OnInit{
 
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    if (product.colors?.length && !product.selectedColor) {
+      alert('Please select a color before adding to cart.');
+      return;
+    }
+
+    this.cartService.addToCart(product); // La couleur est incluse dans le product.selectedColor
+  }
+  selectColor(product: Product, color: string): void {
+    product.selectedColor = color;
   }
 }
 

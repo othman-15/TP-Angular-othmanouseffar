@@ -20,7 +20,7 @@ import {JwtInterceptor} from '../models/auth/interceptor';
     AppComponent,
     HomeComponent,
     ProductsComponent,
-    CartComponent
+
   ],
   imports: [
     BrowserModule,

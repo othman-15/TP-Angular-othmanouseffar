@@ -1,76 +1,151 @@
 <div class="container py-5">
   <div class="row g-4">
-
-
+    <!-- Colonne des articles -->
     <div class="col-lg-8">
-      <h4 class="mb-4 fw-bold"> Your Bag</h4>
+      <h4 class="mb-4 fw-bold">
+        Your Bag
+        <span class="badge bg-dark ms-2">{{totalArticles}}</span>
+      </h4>
 
-
+      <!-- Panier vide -->
       <div *ngIf="cartItems.length === 0" class="alert alert-info text-center py-4">
-        <p class="mb-0">Votre panier est vide.</p>
+        <p class="mb-3">Your Bag is empty.</p>
+
       </div>
 
+      <!-- Liste des articles -->
+      <div *ngIf="cartItems.length > 0" class="card shadow-sm">
+        <div class="card-body p-4">
+          <div *ngFor="let item of cartItems" class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+            <!-- Image et info produit -->
+            <div class="d-flex align-items-center">
+              <img [src]="item.product.image || 'assets/images/placeholder.jpg'"
+                   [alt]="item.product.productTitle"
+                   class="rounded me-3"
+                   width="80"
+                   height="80"
+                   style="object-fit: contain;">
 
-      <div *ngIf="cartItems.length > 0" class="bg-white p-4 rounded shadow-sm">
-        <div *ngFor="let item of cartItems" class="d-flex justify-content-between align-items-center border-bottom py-3">
-          <!-- Product Info -->
-          <div class="d-flex align-items-center">
-            <img [src]="item.image" alt="Image" width="70" height="70" class="me-3 rounded border">
-            <div>
-              <div class="fw-semibold">{{ item.productTitle }}</div>
-              <div class="text-muted small">{{ item.productPrice }} DH</div>
+              <div>
+                <h5 class="mb-1">{{item.product.productTitle}}</h5>
+                <div class="text-muted">{{item.product.productPrice | currency:'MAD':'symbol'}}</div>
+
+                <!-- Affichage couleur si disponible -->
+                <div *ngIf="item.selectedColor" class="mt-2">
+                  <span class="badge bg-light text-dark border">
+                    Couleur:
+                    <span class="color-dot" [style.background-color]="item.selectedColor"></span>
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
 
+            <!-- Quantité et actions -->
+            <div class="d-flex align-items-center">
+              <!-- Sélecteur de quantité -->
+              <div class="input-group input-group-sm me-3" style="width: 120px;">
+                <button class="btn btn-outline-secondary"
+                        (click)="updateQuantity(item, item.quantity - 1)"
+                        [disabled]="item.quantity <= 1">
+                  <i class="bi bi-dash"></i>
+                </button>
+                <input type="number"
+                       class="form-control text-center"
+                       [(ngModel)]="item.quantity"
+                       (change)="updateQuantity(item, item.quantity)"
+                       min="1"
+                       max="99">
+                <button class="btn btn-outline-secondary"
+                        (click)="updateQuantity(item, item.quantity + 1)"
+                        [disabled]="item.quantity >= 99">
+                  <i class="bi bi-plus"></i>
+                </button>
+              </div>
 
-          <div class="d-flex align-items-center">
-            <input type="number" [(ngModel)]="item.quantity"
-                   (change)="updateTotal()"
-                   class="form-control form-control-sm text-center me-3"
-                   style="width: 60px;"
-                   min="1">
-            <div class="fw-semibold me-3">{{ item.productPrice * item.quantity }} DH</div>
-            <button class="btn btn-sm btn-outline-danger" (click)="remove(item.productID)" title="Supprimer">
-              <i class="bi bi-trash-fill"></i>
-            </button>
+              <!-- Prix total pour l'article -->
+              <div class="fw-bold me-3">
+                {{(item.product.productPrice * item.quantity) | currency:'MAD':'symbol'}}
+              </div>
+
+              <!-- Bouton suppression -->
+              <button class="btn btn-sm btn-outline-danger"
+                      (click)="removeItem(item.product.productID, item.selectedColor)"
+                      title="Supprimer">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-
+    <!-- Colonne récapitulative -->
     <div class="col-lg-4">
-      <div class="bg-light p-4 rounded shadow-sm">
-        <h5 class="fw-bold mb-4"> Order Summary</h5>
+      <div class="card shadow-sm sticky-top" style="top: 20px;">
+        <div class="card-body p-4">
+          <h5 class="card-title fw-bold mb-4">
+            <i class="bi bi-receipt me-2"></i>Récapitulatif
+          </h5>
 
-        <div class="d-flex justify-content-between mb-2">
-          <span>Articles ({{ totalArticles }})</span>
-          <span>{{ totalPrice }} DH</span>
+          <!-- Sous-total -->
+          <div class="d-flex justify-content-between mb-2">
+            <span>Sous-total ({{totalArticles}} article{{totalArticles > 1 ? 's' : ''}})</span>
+            <span>{{totalPrice | currency:'MAD':'symbol'}}</span>
+          </div>
+
+          <!-- Livraison -->
+          <div class="d-flex justify-content-between mb-3">
+            <span>Livraison</span>
+            <span>{{shipping | currency:'MAD':'symbol'}}</span>
+          </div>
+
+          <!-- Options de livraison -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Méthode de livraison</label>
+            <select class="form-select" [(ngModel)]="shipping">
+              <option *ngFor="let option of shippingOptions" [value]="option.value">
+                {{option.label}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Code promo -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Code promo</label>
+            <div class="input-group">
+              <input type="text"
+                     class="form-control"
+                     [(ngModel)]="promoCode"
+                     placeholder="Entrez votre code">
+              <button class="btn btn-outline-secondary" >
+                Appliquer
+              </button>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- Total général -->
+          <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+            <span>Total</span>
+            <span>{{grandTotal | currency:'MAD':'symbol'}}</span>
+          </div>
+
+          <!-- Bouton de commande -->
+          <button class="btn btn-dark w-100 py-2" (click)="checkout()" [disabled]="cartItems.length === 0">
+            <i class="bi bi-bag-check me-2"></i>Passer la commande
+          </button>
+
+          <!-- Paiement sécurisé -->
+          <div class="mt-3 text-center">
+            <small class="text-muted">
+              <i class="bi bi-lock-fill me-1"></i>Paiement sécurisé
+            </small>
+            <div class="mt-2">
+              <img src="assets/images/payment-methods.png" alt="Méthodes de paiement" height="24">
+            </div>
+          </div>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-semibold small">Expédition</label>
-          <select class="form-select form-select-sm" [(ngModel)]="shipping">
-            <option value="5">Standard Delivery – 5.00 DH</option>
-            <option value="10">Express – 10.00 DH</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-semibold small">Code promo</label>
-          <input type="text" class="form-control form-control-sm" placeholder="Entrez votre code">
-        </div>
-
-        <hr>
-
-        <div class="d-flex justify-content-between fw-bold fs-6">
-          <span>Total</span>
-          <span>{{ totalPrice + shipping }} DH</span>
-        </div>
-
-        <button class="btn btn-dark w-100 mt-4 rounded-pill py-2">
-          <i class="bi bi-bag-check me-2"></i>Finaliser la commande
-        </button>
       </div>
     </div>
   </div>

@@ -1,33 +1,39 @@
-import { Product } from "./Product"
+import { Product } from "./Product";
 
 export class ShoppingCartItem {
-    public get quantity(): number {
-        return this._quantity
-    }
-    public set quantity(value: number) {
-        this._quantity = value
-    }
-    
+  private _product: Product;
+  private _quantity: number;
 
-    constructor(readonly itemProduct: Product, private _quantity: number = 1 ){
+  constructor(product: Product, quantity: number = 1) {
+    this._product = product;
+    this._quantity = quantity;
+  }
 
-    }
+  public get product(): Product {
+    return this._product;
+  }
 
-    public addProduct(shoppingCartItem: ShoppingCartItem){
-        if(this.itemProduct.productID == shoppingCartItem.itemProduct.productID){
-            this.quantity += shoppingCartItem.quantity
-        }
+  public get quantity(): number {
+    return this._quantity;
+  }
+  public set quantity(value: number) {
+    this._quantity = Math.max(1, value);
+  }
 
-    }
+  public addQuantity(amount: number = 1): void {
+    this._quantity += amount;
+  }
 
-    public subtractProduct(shoppingCartItem: ShoppingCartItem){
-        if(this.itemProduct.productID == shoppingCartItem.itemProduct.productID){
-            this.quantity -= shoppingCartItem.quantity
-        }
-    }
+  public subtractQuantity(amount: number = 1): void {
+    this._quantity = Math.max(1, this._quantity - amount);
+  }
 
-    public displayProduct(){
-        return "Title: "+ this.itemProduct.productTitle + ", quantity: " + this.quantity
-    }
+  public get totalPrice(): number {
+    return this._product.productPrice * this._quantity;
+  }
+
+  public displayDetails(): string {
+    return `${this._product.productTitle} - ${this._quantity} x ${this._product.productPrice}DH = ${this.totalPrice}DH` +
+      (this._product.selectedColor ? ` (Couleur: ${this._product.selectedColor})` : '');
+  }
 }
-
