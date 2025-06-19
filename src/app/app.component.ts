@@ -32,7 +32,7 @@ CurrentAction:any;
 
 
   ngOnInit(): void {
-    this.userName = this.authService.getUserName();
+    this.userName = this.authService.getFirstName();
     this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
     });

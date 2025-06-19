@@ -42,9 +42,6 @@
         </a>
 
 
-        <div class="text-center" *ngIf="userName">
-          <small class="fw-bold text-muted" style="font-size: 0.75rem;">{{ userName }}</small>
-        </div>
 
         <div class="dropdown" [ngClass]="{ 'show': showAccountMenu }">
           <button class="nav-button d-flex align-items-center bg-white text-dark rounded-pill px-3 py-1 border-0 shadow-sm"
@@ -54,7 +51,7 @@
                   style="font-size: 0.9rem;">
             <i class="bi bi-person-fill me-2"></i>
             <div class="fw-semibold">
-              {{ userName ? userName : 'Account' }}
+              {{ userName ? 'Hi '+ userName : 'Account' }}
             </div>
           </button>
 

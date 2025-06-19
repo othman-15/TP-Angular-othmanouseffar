@@ -30,7 +30,14 @@ export class AuthService {
     localStorage.removeItem('token');
 
   }
-
+  getFirstName(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = this.decodeToken(token);
+      return payload?.firstName || null;  // ici on récupère firstName au lieu de sub
+    }
+    return null;
+  }
   decodeToken(token: string): any {
     if (!token) return null;
     return JSON.parse(atob(token.split('.')[1]));
