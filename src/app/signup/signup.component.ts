@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-
-import { Router } from '@angular/router';
-import {AuthService} from '../auth-service.service';
-import {RegisterRequest} from '../../models/auth/RegisterRequest';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {Router, RouterLink} from '@angular/router';
+import { AuthService } from '../auth-service.service';
+import { RegisterRequest } from '../../models/auth/RegisterRequest';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   styleUrls: ['./signup.component.css']
 })
@@ -35,11 +35,11 @@ export class SignupComponent implements OnInit {
       address: ['', Validators.required],
       country: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-    }, { validator: this.passwordsMatch });
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordsMatch });
   }
 
-  // Fonction personnalisée pour vérifier le mot de passe
+  // Vérifie si les mots de passe correspondent
   passwordsMatch(form: FormGroup) {
     const pass = form.get('password')?.value;
     const confirm = form.get('confirmPassword')?.value;
@@ -47,7 +47,10 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.signupForm.invalid) return;
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched(); // Affiche les erreurs
+      return;
+    }
 
     const formData = this.signupForm.value;
 
@@ -56,6 +59,7 @@ export class SignupComponent implements OnInit {
       lastName: formData.lastName,
       email: formData.email,
       password: formData.password,
+      confirmPassword: formData.confirmPassword, // inclus maintenant
       phone: formData.phone,
       dob: formData.dob,
       gender: formData.gender,

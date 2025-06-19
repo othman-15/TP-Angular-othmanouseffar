@@ -12,7 +12,8 @@ import {ProductServiceService} from './product-service.service';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './cart/cart.component';
-import {TokenInterceptor} from './token.interceptor';
+import {JwtInterceptor} from '../models/auth/interceptor';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {TokenInterceptor} from './token.interceptor';
 
   ],
   providers: [ProductServiceService,
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

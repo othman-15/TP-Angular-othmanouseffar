@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { AuthRequest } from '../../models/auth/AuthRequest';
+import {AuthService} from '../auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +18,24 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    if (this.login === 'admin' && this.password === '1234') {
-      console.log('Connexion réussie');
-      this.errorMessage = '';
-      this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Identifiants incorrects';
-    }
+    const credentials: AuthRequest = {
+      email: this.login,
+      password: this.password
+    };
+
+    this.authService.login(credentials).subscribe({
+      next: (response) => {
+
+        this.errorMessage = '';
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.errorMessage = 'Email ou mot de passe incorrect.';
+        console.error('Erreur de connexion', err);
+      }
+    });
   }
 }

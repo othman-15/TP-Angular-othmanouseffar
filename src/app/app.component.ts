@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {CartService} from './cart.service';
+import {AuthService} from './auth-service.service';
 
 
 @Component({
@@ -26,9 +27,12 @@ CurrentAction:any;
 
   cartCount = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private authService: AuthService,private router: Router) {}
+  userName: string | null = null;
+
 
   ngOnInit(): void {
+    this.userName = this.authService.getUserName();
     this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
     });
@@ -45,7 +49,14 @@ CurrentAction:any;
       this.showAccountMenu = false;
     }
   }
-
+  updateUserName() {
+    this.userName = this.authService.getUserName();
+  }
+  logout() {
+    this.authService.logout();
+    this.updateUserName()
+    this.router.navigate(['/login']);
+  }
   SetCurrentAction(action: any) {
     this.CurrentAction=action;
   }

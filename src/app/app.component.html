@@ -42,6 +42,10 @@
         </a>
 
 
+        <div class="text-center" *ngIf="userName">
+          <small class="fw-bold text-muted" style="font-size: 0.75rem;">{{ userName }}</small>
+        </div>
+
         <div class="dropdown" [ngClass]="{ 'show': showAccountMenu }">
           <button class="nav-button d-flex align-items-center bg-white text-dark rounded-pill px-3 py-1 border-0 shadow-sm"
                   type="button"
@@ -49,20 +53,32 @@
                   (click)="toggleAccountMenu()"
                   style="font-size: 0.9rem;">
             <i class="bi bi-person-fill me-2"></i>
-            <div class="fw-semibold">Account</div>
+            <div class="fw-semibold">
+              {{ userName ? userName : 'Account' }}
+            </div>
           </button>
+
           <ul class="dropdown-menu dropdown-menu-end shadow" [class.show]="showAccountMenu"
               aria-labelledby="accountMenuBtn">
-            <li>
-              <a class="dropdown-item text-center text-primary fw-bold" [routerLink]="['/login']">
-                Sign in or create account
-              </a>
-            </li>
+            <ng-container *ngIf="!userName">
+              <li>
+                <a class="dropdown-item text-center text-primary fw-bold" [routerLink]="['/login']">
+                  Sign in or create account
+                </a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="userName">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li *ngIf="userName">
+                <a class="dropdown-item" (click)="logout()" style="cursor:pointer;">Logout</a>
+              </li>
+            </ng-container>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Purchase History</a></li>
             <li><a class="dropdown-item" href="#">Walmart+</a></li>
           </ul>
         </div>
+
 
 
         <a [routerLink]="['/cart']"
