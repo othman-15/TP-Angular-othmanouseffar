@@ -1,70 +1,152 @@
-# Fapp
-# TP Angular - Ouseffar Othman
+Fapp - Plateforme e-Commerce
 
-## 👤 Auteur
-**Nom :** Ouseffar  
-**Prénom :** Othman
+TP Angular - Ouseffar Othman
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+Nom : OuseffarPrénom : OthmanProjet : Plateforme e-Commerce Angular + Spring Boot
 
-## Development server
+🌐 Aperçu du Projet
 
-To start a local development server, run:
+Ce projet est une application web d'e-commerce full-stack développée en utilisant :
 
-```bash
+Frontend : Angular 16+, Bootstrap 5
+
+Backend : Spring Boot + JWT Security
+
+Base de données : MySQL
+
+Fonctionnalités principales :
+
+Authentification JWT (Admin / Utilisateur)
+
+Liste et détails des produits
+
+Ajout, modification, suppression des produits (admin)
+
+Panier utilisateur
+
+Gestion des utilisateurs (admin)
+
+🚀 Lancement du projet
+
+Démarrer le serveur de développement Angular
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Puis ouvrir : http://localhost:4200/
 
-## Code scaffolding
+Lancer le backend Spring Boot
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Dans le dossier backend (Spring Boot) :
 
-```bash
+./mvnw spring-boot:run
+
+L'API sera accessible sur http://localhost:8083/api
+
+🔧 Fonctionnalités implémentées
+
+🔐 Authentification JWT
+
+Login / Signup avec jeton JWT stocké dans localStorage
+
+Décodage du token pour récupérer role, firstName et email
+
+📄 Liste Produits
+
+Affichage dynamique depuis l'API
+
+Détails d'un produit (image, titre, prix, couleurs...)
+
+Design personnalisé avec Bootstrap 5 + Bootstrap Icons
+
+🍭 Panier Utilisateur
+
+Ajout d'un produit avec sélection de couleur (optionnelle)
+
+Sauvegarde en local (ou future intégration backend)
+
+👨‍💻 Espace Admin
+
+Accessible uniquement via ROLE_ADMIN
+
+Dashboard
+
+Liste des clients
+
+Liste des produits avec actions : Ajouter / Modifier / Supprimer
+
+🎨 Technologies utilisées
+
+Angular CLI v16+
+
+Bootstrap 5
+
+Spring Boot v3+
+
+MySQL
+
+JWT (JSON Web Token)
+
+🌐 API Backend
+
+L'API expose des routes comme :
+
+POST /api/auth/register
+
+POST /api/auth/login
+
+GET /api/products
+
+POST /api/products
+
+DELETE /api/products/{id}
+
+⚙️ Commandes Utiles Angular
+
+Générer un nouveau composant
+
 ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Liste des schémas disponibles
 
-```bash
 ng generate --help
-```
 
-## Building
+Build du projet
 
-To build the project run:
-
-```bash
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Tests unitaires (Karma)
 
-## Running unit tests
+ng test
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Tests end-to-end (e2e)
 
-```bash
-ng test![details](https://github.com/user-attachments/assets/ec808172-9315-4bd0-ba3a-2279bc184e1c)
-
-```
-
-## Running end-to-end tests![product](https://github.com/user-attachments/assets/028dc9ba-5ea3-4dd1-9203-55ec520a0569)![details](https://github.com/user-attachments/assets/ef2daf0f-4854-437d-b568-533e51d7c93e)
-
-
-
-For end-to-end (e2e) testing, run:
-
-```bash
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+🔗 Liens Utiles
 
-## Additional Resources
+Angular CLI Docs
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-![image](https://github.com/user-attachments/assets/8ea6d688-77f3-4296-b223-0ae86fca64a3)
-![image](https://github.com/user-attachments/assets/cdef7d51-491f-4df3-96f4-22e8e94ddf03)
+Bootstrap 5
 
+Spring Boot Docs
+
+JWT
+
+🚀 Capture d'écran
+![home-page](https://github.com/user-attachments/assets/48dc8c0c-e8ac-432b-a621-6556b0e08125)
+
+![login-page](https://github.com/user-attachments/assets/d42ef4ce-caf4-4e4b-992e-eb733801f15c)
+![panier](https://github.com/user-attachments/assets/11a2514e-a07b-472d-b7c0-0585d69e3efe)
+![panier-vide](https://github.com/user-attachments/assets/855de13f-8f47-4150-bb8e-869c3bb80699)
+
+![page-admin-ajouter-produit](https://github.com/user-attachments/assets/b3120076-ab0c-4b65-9a5d-9d741ae8bd89)
+![page-admin-list-produit](https://github.com/user-attachments/assets/8a48004e-cef0-49dd-b807-effd6cb13ad9)
+![page-dinscription](https://github.com/user-attachments/assets/8cd5fd0f-4b02-4191-b398-497508f6087d)
+
+![details-page2](https://github.com/user-attachments/assets/11d3af6a-ae7b-4127-a6bb-ae15088bdd9d)
+![page-de details](https://github.com/user-attachments/assets/d9a48623-8f48-455f-a77e-cec791e3382f)
+
+
+💼 Licence
+
+Ce projet est réalisé dans le cadre d'un TP universitaire. Utilisation libre à but éducatif.
