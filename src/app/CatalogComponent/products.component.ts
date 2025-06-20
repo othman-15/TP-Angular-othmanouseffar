@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit{
       return;
     }
 
-    this.cartService.addToCart(product); // La couleur est incluse dans le product.selectedColor
+    this.cartService.addToCart(product);
   }
   selectColor(product: Product, color: string): void {
     product.selectedColor = color;

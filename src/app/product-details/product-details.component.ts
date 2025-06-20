@@ -33,7 +33,7 @@ export class ProductDetailsComponent implements OnInit {
     this.prodService.getAllProduct().subscribe({
       next: (data) => {
         this.products=data.slice(0, 4)
-        this.product = data.find((p: { productID: number | null; }) => p.productID === id);
+        this.product = data.find(p => p.productID === id.toString());
       },
       error: (err) => {
         console.error("Erreur lors de la récupération des produits :", err);
@@ -43,6 +43,7 @@ export class ProductDetailsComponent implements OnInit {
     this.prodService.getProductbyid(id).subscribe({
       next: (data) => {
         this.product = data;
+        console
       },
       error: (err) => {
         console.error("Erreur lors de la récupération du produit :", err);

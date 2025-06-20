@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { AuthRequest } from '../../models/auth/AuthRequest';
-import {AuthService} from '../auth-service.service';
+import { AuthService } from '../auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +13,21 @@ import {AuthService} from '../auth-service.service';
   styleUrls: ['./login.component.css'],
   imports: [CommonModule, FormsModule, RouterLink]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   login: string = '';
   password: string = '';
   errorMessage: string = '';
+  returnUrl: string = '/home'; // Valeur par défaut
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+  }
 
   onLogin() {
     const credentials: AuthRequest = {
@@ -27,10 +36,9 @@ export class LoginComponent {
     };
 
     this.authService.login(credentials).subscribe({
-      next: (response) => {
-
+      next: () => {
         this.errorMessage = '';
-        this.router.navigate(['/home']);
+        this.router.navigateByUrl(this.returnUrl); // ✅ Redirige vers returnUrl
       },
       error: (err) => {
         this.errorMessage = 'Email ou mot de passe incorrect.';

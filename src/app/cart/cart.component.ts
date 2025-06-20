@@ -3,7 +3,8 @@ import { CartService } from '../cart.service';
 import { Product } from '../../models/Product';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
+import {AuthService} from '../auth-service.service';
 
 interface CartItem {
   product: Product;
@@ -30,7 +31,7 @@ export class CartComponent implements OnInit {
     { value: 10, label: 'Express – 10.00 DH' }
   ];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -55,6 +56,13 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url } // 👈 Redirection avec retour
+      });
+      return;
+    }
+
     if (this.cartItems.length === 0) {
       alert('Votre panier est vide !');
       return;

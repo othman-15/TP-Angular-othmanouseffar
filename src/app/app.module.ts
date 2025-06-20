@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './CatalogComponent/products.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -13,13 +12,22 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './cart/cart.component';
 import {JwtInterceptor} from '../models/auth/interceptor';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ClientsListComponent } from './admin/clients-list/clients-list.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AddProductComponent } from './products/add-product/add-product.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+
     ProductsComponent,
+    DashboardComponent,
+
+    ClientsListComponent,
+    UnauthorizedComponent,
+
 
   ],
   imports: [
@@ -32,6 +40,7 @@ import {JwtInterceptor} from '../models/auth/interceptor';
     FormsModule,
     LoginComponent,
     SignupComponent,
+    AddProductComponent,
 
   ],
   providers: [ProductServiceService,
